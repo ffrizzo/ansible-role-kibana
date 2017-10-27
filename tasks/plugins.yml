@@ -1,0 +1,15 @@
+---
+- name: Get list of installed plugins.
+  command: >
+    /usr/share/kibana/bin/kibana-plugin list
+    chdir=/usr/share/kibana
+  register: kibana_plugins_list
+  changed_when: false
+
+- name: Install configured plugins.
+  command: >
+    /usr/share/kibana/bin/kibana-plugin install {{ item }}
+    chdir=/usr/share/kibana
+  with_items: "{{ kibana_install_plugins }}"
+  when: item not in kibana_plugins_list.stdout
+  notify: restart kibana
