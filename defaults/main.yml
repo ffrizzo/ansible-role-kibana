@@ -1,5 +1,6 @@
 ---
-kibana_version: "6.x"
+kibana_major_version: "6.x"
+kibana_version: ""
 
 kibana_server_port: 5601
 kibana_server_host: "0.0.0.0"
